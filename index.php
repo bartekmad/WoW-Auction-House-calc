@@ -1,4 +1,4 @@
-﻿<head>
+<head>
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<script type="text/javascript" src="//wow.zamimg.com/widgets/power.js"></script><script>var wowhead_tooltips = { "colorlinks": false, "iconizelinks": true, "renamelinks": true }</script>
 </head>
@@ -14,9 +14,6 @@ $row = mysqli_fetch_assoc($result);
 echo "Ostatnia Aktualizacja: ", $row['date_time'];
 
 $file = 'file.txt';
-
-//https://theunderminejournal.com/#eu/defias-brotherhood/category/herbalism
-
 
 
 echo '<div id="page-wrap">';
