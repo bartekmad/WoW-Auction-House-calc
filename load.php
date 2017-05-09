@@ -1,16 +1,5 @@
-﻿<?php
+<?php
 include 'login.php';
-include 'lowestprice.php';
-
-//wczytanie jsona
-ini_set('memory_limit', '-1');
-$jsondata = file_get_contents('https://eu.api.battle.net/wow/auction/data/defias-brotherhood?locale=en_GB&apikey=cw9dq8devpdvx3pn5t68y8qc57rp8582');
-$data = json_decode($jsondata, true);
-$auctionsFile = file_get_contents($data['files'][0]['url']);
-$decode = json_decode($auctionsFile, true);
-
-$auctions = $decode['auctions'];
-
 
 //stowrzenie tabelki, jesli nie ma(czyli tylko na starcie ;p)
 $sql = "CREATE TABLE IF NOT EXISTS auctions (
@@ -25,6 +14,19 @@ $sql = "CREATE TABLE IF NOT EXISTS status (
 	date_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 )";
 mysqli_query($conn, $sql) or exit(mysqli_error($conn));
+
+include 'lowestprice.php';
+
+//wczytanie jsona
+ini_set('memory_limit', '-1');
+$jsondata = file_get_contents('https://eu.api.battle.net/wow/auction/data/defias-brotherhood?locale=en_GB&apikey=cw9dq8devpdvx3pn5t68y8qc57rp8582');
+$data = json_decode($jsondata, true);
+$auctionsFile = file_get_contents($data['files'][0]['url']);
+$decode = json_decode($auctionsFile, true);
+
+$auctions = $decode['auctions'];
+
+
 
 
 file_put_contents("file.txt", "");
